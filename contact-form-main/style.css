@@ -1,0 +1,159 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+html{
+    background-color: rgb(220, 246, 235);
+}
+
+body{
+    background-color: white;
+    width: 700px;
+    height: 700px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    font-family: 'Karla', sans-serif;
+}
+
+.form-container {
+    margin: 40px;
+    font-size: medium;
+}
+
+.form-questions div{
+    margin-top: 15px;
+}
+
+.name{
+    overflow: hidden;
+}
+
+.name .first-name, .name .last-name{
+    width: 49%;
+}
+
+.first-name {
+    float: left;
+}
+
+.last-name{
+    float: right;
+}
+
+.name label {
+    display: block;
+}
+
+.name input{
+    width: 303px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid  lightgray;
+    margin-top: 10px;
+    font-size: large;
+}
+
+.name input:hover {
+    border-color: rgb(8, 164, 8);
+ }
+
+ .error{
+    font-size: small;
+    color: red;
+    float: left;
+ }
+
+.email input{
+    width: 303px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid  lightgray;
+    margin-top: 10px;
+    font-size: large;
+}
+
+.email input:hover {
+    border-color: rgb(8, 164, 8);
+ }
+
+.email label{
+    display: block;
+}
+
+.queryoption1{
+    border: 1px solid  lightgray;
+    border-radius: 5px;
+    width: 300px;
+    height: 40px;
+    float: left;
+    margin-right: 10px;
+    padding: 10px;
+}
+
+.queryoption2{
+    border: 1px solid  lightgray;
+    border-radius: 5px;
+    width: 300px;
+    height: 40px;
+    display: inline-block;
+    padding: 10px;
+    padding-left: 10px;
+}
+
+.queryoption1 input, .queryoption1 label{
+    margin-left: 10px;
+}
+
+.queryoption2 input, .queryoption2 label{
+    margin-left: 10px;
+}
+
+input[type='radio'] { 
+    transform: scale(1.5); 
+}
+
+.queryoption1:has(input[type="radio"]:checked) {
+    background-color: rgb(177, 241, 201);
+    border-color: rgb(8, 164, 8);
+}
+
+.queryoption2:has(input[type="radio"]:checked) {
+    background-color: rgb(177, 241, 201);
+    border-color: rgb(8, 164, 8);
+}
+
+.message textarea {
+    border: 1px solid  lightgray;
+    width: 630px;
+    height: 100px;
+    border-radius: 10px;
+    font-size: large;
+    padding: 5px;
+    margin-top: 10px;
+}
+
+input[type='checkbox'] { 
+    transform: scale(1.2); 
+}
+
+button { 
+    transform: scale(1.5);
+    width: 400px;
+    height: 40px;
+    display: absolute;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 30px;
+    border: 1px solid  lightgray;
+    border-radius: 10px;
+    margin-left: 120px;
+    background-color: rgb(40, 116, 69);
+    color: white;
+}
+
