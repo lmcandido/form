@@ -25,7 +25,7 @@ form.addEventListener('submit', (e) => {
         // Insert error message after the input field
         firstname.insertAdjacentElement("afterend", errorMessage);
     } 
-    if(lastname.value.trim() === '' || lastname.value.trim() == null){
+    else if(lastname.value.trim() === '' || lastname.value.trim() == null){
         const errorMessage = document.createElement('div');
         errorMessage.className = 'error-message';
         errorMessage.textContent = 'This field is required';
