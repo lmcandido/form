@@ -7,6 +7,11 @@ form.addEventListener('submit', (e) => {
 
     e.preventDefault();
 
+    // Check email function
+    function checkEmail(emailValue) {
+        return emailValue.includes('@') && emailValue.includes('.');
+    }
+
     // Clear previous message
     const existingError = document.querySelector('.error-message');
     if(existingError){
@@ -38,8 +43,19 @@ form.addEventListener('submit', (e) => {
         // Insert error message after the input field
         lastname.insertAdjacentElement("afterend", errorMessage);
     
-    } 
-    else{
+    } else if(!checkEmail(email)){
+        const errorMessage = document.createElement('div');
+        errorMessage.className = 'error-message';
+        errorMessage.textContent = 'Please enter a valid email address';
+
+        //Style div
+        errorMessage.style.color = 'red';
+        errorMessage.style.marginTop = '5px';
+
+        // Insert error message after the input field
+        email.insertAdjacentElement("afterend", errorMessage);
+    
+    } else{
         alert('Form submitted successfuly!');
     }
 });
