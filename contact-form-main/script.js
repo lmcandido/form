@@ -7,12 +7,6 @@ form.addEventListener('submit', (e) => {
 
     e.preventDefault();
 
-    function isValidEmail(email){
-
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailPattern.test(email);
-    }
-
     // Clear previous message
     const existingError = document.querySelector('.error-message');
     if(existingError){
