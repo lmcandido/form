@@ -1,10 +1,17 @@
 const form = document.getElementById('form_container');
 const firstname = document.getElementById('firstname');
 const lastname = document.getElementById('lastname');
+const email = document.getElementById('email');
 
 form.addEventListener('submit', (e) => {
 
     e.preventDefault();
+
+    function isValidEmail(email){
+
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailPattern.test(email);
+    }
 
     // Clear previous message
     const existingError = document.querySelector('.error-message');
@@ -37,7 +44,8 @@ form.addEventListener('submit', (e) => {
         // Insert error message after the input field
         lastname.insertAdjacentElement("afterend", errorMessage);
     
-    }else{
+    } 
+    else{
         alert('Form submitted successfuly!');
     }
 });
