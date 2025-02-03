@@ -9,92 +9,102 @@ const textarea = document.getElementById('paragraph_text');
 const checkbox = document.getElementById('checkbox');
 const checkboxlabel = document.getElementById('checkboxlabel');
 
-form.addEventListener('submit', (e) => {
+    function fieldIsRequired(field){
 
-    e.preventDefault();
+        if(field.value.trim() === '' || field.value.trim() == null){
+            const errorMessage = document.createElement('div');
+            errorMessage.className = 'error-message';
+            errorMessage.textContent = 'This field is required';
 
-    // Clear previous message
-    const existingError = document.querySelector('.error-message');
-    if(existingError){
-        existingError.remove();
+            //Style div
+            errorMessage.style.color = 'red';
+            errorMessage.style.marginTop = '5px';
+
+            // Insert error message after the input field
+            field.insertAdjacentElement("afterend", errorMessage);
+            return false;
+            }
+
+            return true;
     }
 
-    // Check if input is empty
-    if(firstname.value.trim() === '' || firstname.value.trim() == null){
-        const errorMessage = document.createElement('div');
-        errorMessage.className = 'error-message';
-        errorMessage.textContent = 'This field is required';
+    function isEmailValid(field){
+        if(field.value.trim() === '' || !field.value.includes('@')){
+            const errorMessage = document.createElement('div');
+            errorMessage.className = 'error-message';
+            errorMessage.textContent = 'Please enter a valid email address';
+        
+            //Style div
+            errorMessage.style.color = 'red';
+            errorMessage.style.marginTop = '5px';
+        
+            // Insert error message after the input field
+            field.insertAdjacentElement("afterend", errorMessage);
+            return false;
+        }
 
-        //Style div
-        errorMessage.style.color = 'red';
-        errorMessage.style.marginTop = '5px';
-
-        // Insert error message after the input field
-        firstname.insertAdjacentElement("afterend", errorMessage);
-    } 
-    else if(lastname.value.trim() === '' || lastname.value.trim() == null){
-        const errorMessage = document.createElement('div');
-        errorMessage.className = 'error-message';
-        errorMessage.textContent = 'This field is required';
-
-        //Style div
-        errorMessage.style.color = 'red';
-        errorMessage.style.marginTop = '5px';
-
-        // Insert error message after the input field
-        lastname.insertAdjacentElement("afterend", errorMessage);
-    
-    } else if(email.value === '' || !email.value.includes('@')){
-        const errorMessage = document.createElement('div');
-        errorMessage.className = 'error-message';
-        errorMessage.textContent = 'Please enter a valid email address';
-
-        //Style div
-        errorMessage.style.color = 'red';
-        errorMessage.style.marginTop = '5px';
-
-        // Insert error message after the input field
-        email.insertAdjacentElement("afterend", errorMessage);
-    
-    } else if(!enquiry.checked && !request.checked){
-        const errorMessage = document.createElement('div');
-        errorMessage.className = 'error-message';
-        errorMessage.textContent = 'Please select a query type';
-
-        //Style div
-        errorMessage.style.color = 'red';
-        errorMessage.style.marginBottom = '5px';
-
-        // Insert error message after the input field
-        error.insertAdjacentElement("afterend", errorMessage);
-    
-    } else if(textarea.value.trim() === '' || textarea.value.trim() == null){
-        const errorMessage = document.createElement('div');
-        errorMessage.className = 'error-message';
-        errorMessage.textContent = 'This field is required';
-
-        //Style div
-        errorMessage.style.color = 'red';
-        errorMessage.style.marginTop = '5px';
-
-        // Insert error message after the input field
-        textarea.insertAdjacentElement("afterend", errorMessage);
-
-    } else if(!checkbox.checked){
-        const errorMessage = document.createElement('div');
-        errorMessage.className = 'error-message';
-        errorMessage.textContent = 'Please select a query type';
-
-        //Style div
-        errorMessage.style.color = 'red';
-        errorMessage.style.marginBottom = '5px';
-
-        // Insert error message after the input field
-        checkboxlabel.insertAdjacentElement("afterend", errorMessage);
-    
+        return true;
     }
 
-    else{
-        alert('Form submitted successfuly!');
+    function isSelected(field,field2,error){
+
+        if(!field.checked && !field2.checked){
+            const errorMessage = document.createElement('div');
+            errorMessage.className = 'error-message';
+            errorMessage.textContent = 'Please select a query type';
+    
+            //Style div
+            errorMessage.style.color = 'red';
+            errorMessage.style.marginBottom = '5px';
+    
+            // Insert error message after the input field
+            error.insertAdjacentElement("afterend", errorMessage)
+            return false;
+        };
+
+            return true;
     }
-});
+
+    function isChecked(field,field2){
+
+        if(!field.checked){
+            const errorMessage = document.createElement('div');
+            errorMessage.className = 'error-message';
+            errorMessage.textContent = 'To submit this form, please consent to being contacted';
+    
+            //Style div
+            errorMessage.style.color = 'red';
+            errorMessage.style.marginBottom = '5px';
+    
+            // Insert error message after the input field
+            field2.insertAdjacentElement("afterend", errorMessage);
+            return false;
+        }
+        
+        return true;
+    }
+
+    function clearErrors() {
+        // Clear previous message
+        const existingError = document.querySelectorAll('.error-message');
+        existingError.forEach(element => element.remove());
+    }
+
+    function submitForm() {
+        const form = document.getElementById('form_container');
+        form.submit();
+    }
+
+    form.addEventListener('submit', (e) => {
+
+        e.preventDefault();
+
+        clearErrors();
+
+        if(fieldIsRequired(firstname) && fieldIsRequired(lastname) && isEmailValid(email) && isSelected(enquiry,request,error) && fieldIsRequired(textarea)
+         && isChecked(checkbox,checkboxlabel)){
+            submitForm();
+        } 
+
+    });
+
